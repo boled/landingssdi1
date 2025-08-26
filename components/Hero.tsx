@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
@@ -9,6 +8,17 @@ const Hero: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href');
+    if (targetId) {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   return (
     <section 
@@ -31,6 +41,7 @@ const Hero: React.FC = () => {
         </p>
         <a
           href="#services"
+          onClick={handleScrollClick}
           className="bg-white text-emerald-700 font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-emerald-50 transition-all transform hover:scale-105"
         >
           Jelajahi Layanan

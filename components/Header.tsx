@@ -11,6 +11,17 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href');
+    if (targetId) {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 shadow backdrop-blur-md' : 'bg-transparent'}`}>
       <div className={`container mx-auto px-6 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-4'}`}>
@@ -24,10 +35,10 @@ const Header: React.FC = () => {
             </a>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Layanan</a>
-            <a href="#about" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Tentang</a>
-            <a href="#news" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Berita</a>
-            <a href="#contact" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Kontak</a>
+            <a href="#services" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Layanan</a>
+            <a href="#about" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Tentang</a>
+            <a href="#news" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Berita</a>
+            <a href="#contact" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Kontak</a>
           </nav>
           <a
             href="#"

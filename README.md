@@ -18,3 +18,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/151X9fh9nukO_Pish2JNsI3
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+4. Start the backend server:
+   `npm run server`
+
+The frontend now includes a **Landing Pages** section with a modern and elegant menu to quickly access key campus information.

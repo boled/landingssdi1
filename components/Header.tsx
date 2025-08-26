@@ -36,6 +36,7 @@ const Header: React.FC = () => {
           </div>
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#services" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Layanan</a>
+            <a href="#landing" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Landing Pages</a>
             <a href="#about" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Tentang</a>
             <a href="#news" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Berita</a>
             <a href="#contact" onClick={handleNavClick} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Kontak</a>

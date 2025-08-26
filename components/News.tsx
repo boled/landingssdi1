@@ -24,6 +24,26 @@ const NewsCard: React.FC<NewsCardProps> = ({ image, category, title, date }) => 
 const News: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const [newsItems, setNewsItems] = useState<NewsCardProps[]>([
+    {
+      image: 'https://picsum.photos/400/300?image=1015',
+      category: 'Akademik',
+      title: 'Pelaksanaan Ujian Akhir Semester Genap 2024',
+      date: '15 Juli 2024',
+    },
+    {
+      image: 'https://picsum.photos/400/300?image=1016',
+      category: 'Kemahasiswaan',
+      title: 'UNUGHA Raih Juara 1 Lomba Debat Nasional',
+      date: '12 Juli 2024',
+    },
+    {
+      image: 'https://picsum.photos/400/300?image=1018',
+      category: 'Pengumuman',
+      title: 'Jadwal Pendaftaran Wisuda Periode II Tahun 2024',
+      date: '10 Juli 2024',
+    },
+  ]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,26 +67,22 @@ const News: React.FC = () => {
     };
   }, []);
 
-  const newsItems = [
-    {
-      image: 'https://picsum.photos/400/300?image=1015',
-      category: 'Akademik',
-      title: 'Pelaksanaan Ujian Akhir Semester Genap 2024',
-      date: '15 Juli 2024',
-    },
-    {
-      image: 'https://picsum.photos/400/300?image=1016',
-      category: 'Kemahasiswaan',
-      title: 'UNUGHA Raih Juara 1 Lomba Debat Nasional',
-      date: '12 Juli 2024',
-    },
-    {
-      image: 'https://picsum.photos/400/300?image=1018',
-      category: 'Pengumuman',
-      title: 'Jadwal Pendaftaran Wisuda Periode II Tahun 2024',
-      date: '10 Juli 2024',
-    },
-  ];
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const res = await fetch('/api/news');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length) {
+            setNewsItems(data);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch news', err);
+      }
+    }
+    fetchNews();
+  }, []);
 
   return (
     <section id="news" className="py-20 bg-gray-100" ref={sectionRef}>
@@ -86,7 +102,7 @@ const News: React.FC = () => {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <NewsCard key={index} {...item} />
+              <NewsCard {...item} />
             </div>
           ))}
         </div>

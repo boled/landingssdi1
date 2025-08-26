@@ -7,6 +7,7 @@ import News from './components/News';
 import Map from './components/Map';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import LandingPages from './components/LandingPages';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
+        <LandingPages />
         <Features />
         <About />
         <News />

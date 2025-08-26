@@ -80,6 +80,14 @@ ${message}`;
     const whatsappUrl = `https://wa.me/6285647818779?text=${encodedMessage}`;
     
     window.open(whatsappUrl, '_blank');
+
+    // Reset form fields after submission
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      message: '',
+    });
   };
 
   return (
